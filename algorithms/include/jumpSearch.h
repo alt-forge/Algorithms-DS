@@ -1,9 +1,10 @@
-#include <iostream>
+#ifndef JUMPSEARCH
+#define JUMPSEARCH
+
 #include <array>
 #include <cmath>
 
-const int N = 14;
-
+template <std::size_t N>
 int jumpSearch(std::array<int, N>& arr, int target) {
     int block = static_cast<int>(std::sqrt(N));
     int prev = 0;
@@ -26,16 +27,4 @@ int jumpSearch(std::array<int, N>& arr, int target) {
     return -1;
 }
 
-int main() {
-    std::array<int, N> arr = {-2,-1,0,1,2,3,4,5,6,9,14,15,19,20};
-
-    // Проверка в диапозоне значений
-    for (int target = -20; target < 20; target++) {
-        int index = jumpSearch(arr, target);
-
-        if (index != -1)
-            std::cout << target << ' ' << index << "\n";
-    }
-
-    return 0;
-}
+#endif
