@@ -1,4 +1,3 @@
-#include <string>
 #include <ostream>
 
 #include "data_types.h"

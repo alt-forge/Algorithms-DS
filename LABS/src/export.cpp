@@ -1,27 +1,31 @@
 #include <fstream>
-#include <array>
+
+#include "passport_gen.h"
+#include "price_gen.h"
+#include "rooms_nums_gen.h"
+#include "date_gen.h"
 
 #include "export.h"
-#include "data_types.h"
-#include "conf.h"
 
-void writer(std::array<booking, BOOKINGS_COUNT> bookings, std::ofstream& file) {
+void writer(std::ofstream& file, int count) {
+    rooms_init();
     // Вывод в итоговый файл
-    for (int i = 0; i < BOOKINGS_COUNT; i++) {
-        file << bookings[i].passport;
-        file << " ";
-        file << bookings[i].date_booking;
-        file << " ";
+    for (int i = 0; i < count; i++) {
+        file << nextPassport() << ' ';
+        file << nextDate() << ' ';
+
+        file << nextPrice();
+        file << ' ';
 
         bool first = true;
-        for (int room : bookings[i].rooms_nums) {
+        file << '{';
+        for (int room : nextRooms_nums()) {
             if (!first) file << ',';
             file << room;
             first = false;
         }
+        file << '}';
         
-        file << " ";
-        file << bookings[i].price;
         file << "\n";
     }
 }
