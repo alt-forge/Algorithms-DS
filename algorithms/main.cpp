@@ -2,6 +2,7 @@
 #include <array>
 
 #include "binarySearch.h"
+#include "binarySearchpos.h"
 #include "interpolationSearch.h"
 #include "jumpSearch.h"
 #include "fibSearch.h"
@@ -11,15 +12,13 @@ int main() {
     std::array<int, N> arr = {-2,-1,0,1,2,3,4,5,6,9,14,15,19,20};
 
     // Проверка в диапозоне значений
-    for (int target = -20; target < 20; target++) {
-        int index = binarySearch(arr, target);
-        //int index = interpolationSearch(arr, target);
-        //int index = jumpSearch(arr, target);
-        //int index = fibSearch(arr, target);
+    int target = 8;
+    int index = binarySearchpos(arr, target);
+    //int index = binarySearch(arr, target);
+    //int index = interpolationSearch(arr, target);
+    //int index = jumpSearch(arr, target);
+    //int index = fibSearch(arr, target);
 
-        if (index != -1)
-            std::cout << target << ' ' << index << "\n";
-    }
-
+    std::cout << target << " " << index << " " << arr[index];
     return 0;
 }
