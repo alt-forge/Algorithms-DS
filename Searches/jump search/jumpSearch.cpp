@@ -1,6 +1,3 @@
-#ifndef JUMPSEARCH
-#define JUMPSEARCH
-
 #include <array>
 #include <cmath>
 
@@ -32,5 +29,3 @@ int jumpSearch(const std::array<int, N>& arr, int target) {
 
     return -1;
 }
-
-#endif

@@ -37,17 +37,3 @@ int main() {
     }
 
 }
-
-/*
-Best case: pivot splits the array into two equal halves every time
-comparisons: n log n
-exchanges: ~ n log n
-time complexity: O(n log n)
-memory complexity: O(log n)
-
-Worst case: already sorted (or reverse sorted) with last-element pivot
-comparisons: n(n - 1) / 2
-exchanges: ~ n^2 / 2
-time complexity: O(n^2)
-memory complexity: O(n)
-*/

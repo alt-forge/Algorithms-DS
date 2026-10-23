@@ -38,17 +38,3 @@ int main() {
         std::cout << arr[i] << ' ';
     }
 }
-
-/*
-Best case: pivot splits the array into two equal halves every time
-comparisons: n log n
-exchanges: ~ (n log n) / 3
-time complexity: O(n log n)
-memory complexity: O(log n)
-
-Worst case: pivot always ends up as min or max (unlucky choice / adversarial input)
-comparisons: n(n - 1) / 2
-exchanges: ~ n^2 / 2
-time complexity: O(n^2)
-memory complexity: O(n)
-*/

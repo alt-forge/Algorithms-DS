@@ -25,17 +25,3 @@ int main() {
 
 }
 
-/*
-Best case: sorted
-comparisons: n(n-1) / 2
-exchanges: 0
-time complexity: O(n^2)
-memory complexity: O(1)
-
-Worst case reverse sorted:
-comparisons: n(n-1) / 2
-exchanges: n(n - 1) / 2
-time complexity: O(n^2)
-memory complexity: O(1)
-*/
-
