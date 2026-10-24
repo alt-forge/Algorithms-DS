@@ -2,7 +2,17 @@
 #include <array>
 #include <utility>
 
-const int n = 8;
+const int n = 11;
+
+template <std::size_t N>
+void printArray(const std::array<int, N>& arr) {
+    std::cout << "[ ";
+    for (std::size_t i = 0; i < N; ++i) {
+        std::cout << arr[i];
+        if (i + 1 < N) std::cout << ", ";
+    }
+    std::cout << " ]\n";
+}
 
 int partition(std::array<int, n>& arr, int low, int high) {
     int pivot = arr[high];
@@ -15,6 +25,7 @@ int partition(std::array<int, n>& arr, int low, int high) {
         }
     }
     std::swap(arr[i + 1], arr[high]);
+    printArray(arr);
     return i + 1;
 }
 
@@ -28,7 +39,7 @@ void quickSort(std::array<int, n>& arr, int low, int high) {
 }
 
 int main() {
-    std::array<int, n> arr = {8,19,2,7,13,28,4,0};
+    std::array<int, n> arr = {79,80,2,5,98,15,21,14,0,55,11};
 
     quickSort(arr, 0, n - 1);
 
