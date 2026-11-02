@@ -3,8 +3,9 @@
 #include <sstream>
 #include <string>
 #include "data_types.h"
+#include <utility>
 
-booking* read_in_arr(std::string& filename) {
+std::pair<booking*, int> read_in_arr(std::string& filename) {
     std::ifstream fin(filename);
     std::size_t n;
     fin >> n;
@@ -42,5 +43,5 @@ booking* read_in_arr(std::string& filename) {
         arr[i].rooms_nums = rooms_nums;
     }
     
-    return arr;
+    return {arr, n};
 }

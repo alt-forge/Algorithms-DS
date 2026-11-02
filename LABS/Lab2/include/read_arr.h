@@ -3,7 +3,8 @@
 
 #include <string>
 #include "data_types.h"
+#include <utility>
 
-booking* read_in_arr(std::string& filename);
+std::pair<booking*, int> read_in_arr(std::string& filename);
 
 #endif
