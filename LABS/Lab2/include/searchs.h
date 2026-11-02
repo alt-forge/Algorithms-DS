@@ -40,14 +40,14 @@ inline int interpolationSearch_arr(booking* arr, int n, int target) {
             (target - lval)
         );
 
-        if (pos < left)  pos = left;
+        if (pos < left) pos = left;
         if (pos > right) pos = right;
 
         int pval = calcDate(arr[pos].date_booking);
 
-        if (pval == target)      return pos;
-        else if (pval < target)  left  = pos + 1;
-        else                     right = pos - 1;
+        if (pval == target) return pos;
+        else if (pval < target) left = pos + 1;
+        else right = pos - 1;
     }
 
     return -1;
@@ -73,14 +73,14 @@ inline int interpolationSearch_vec(const std::vector<booking>& vec, int target) 
             (target - lval)
         );
 
-        if (pos < left)  pos = left;
+        if (pos < left) pos = left;
         if (pos > right) pos = right;
 
         int pval = calcDate(vec[pos].date_booking);
 
-        if (pval == target)      return pos;
-        else if (pval < target)  left  = pos + 1;
-        else                     right = pos - 1;
+        if (pval == target) return pos;
+        else if (pval < target) left = pos + 1;
+        else right = pos - 1;
     }
 
     return -1;
