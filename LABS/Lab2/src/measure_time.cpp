@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include "time.h"
+#include "workWithTime.h"
 
 void print_time(std::string title, double t1, double t2, double t3) {
     std::cout << title << '\n';

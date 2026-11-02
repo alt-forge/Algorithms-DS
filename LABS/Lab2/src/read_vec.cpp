@@ -3,10 +3,12 @@
 #include <string>
 #include <fstream>
 #include <vector>
+
+#include "read_vec.h"
+
 #include "calcDate.h"
-#include "searchs.h"
+#include "searches.h"
 #include "data_types.h"
-#include "read_vector.h"
 
 std::vector<booking> read_in_vector(std::string& filename) {
     std::ifstream fin(filename);

@@ -2,10 +2,12 @@
 #include <sstream>
 #include <string>
 #include <fstream>
-#include "calcDate.h"
-#include "searchs.h"
-#include "data_types.h"
+
 #include "read_arr_sort.h"
+
+#include "calcDate.h"
+#include "searches.h"
+#include "data_types.h"
 #include <utility>
 
 std::pair<booking*, int> read_in_arr_sort(std::string& filename) {

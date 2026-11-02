@@ -1,21 +1,24 @@
 #include <iostream>
-#include <chrono>
+
 #include "read_arr.h"
-#include "read_vector.h"
 #include "read_arr_sort.h"
+#include "read_vec.h"
+
+#include "remove_arr.h"
+#include "remove_arr_sort.h"
+#include "remove_vec.h"
+
 #include "calcDate.h"
-#include "searchs.h"
-#include <windows.h>
-#include "measure_time.h"
+#include "searches.h"
+#include "workWithTime.h"
 
 int main() {
-    SetConsoleOutputCP(CP_UTF8);
 
     // Инициализация входных данных
     std::string f = "output_1000.txt";
 
     date goal_date;
-    goal_date.day = 1;
+    goal_date.day = 12;
     goal_date.month = 6;
     goal_date.year = 2025;
     int goal_key = calcDate(goal_date);

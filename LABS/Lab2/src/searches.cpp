@@ -1,10 +1,11 @@
-#ifndef SEARCHS
-#define SEARCHS
-
 #include <vector>
+
+#include "searches.h"
+
 #include "calcDate.h"
 
-inline int linearSearch_arr(booking* arr, int target, int filled) {
+
+int linearSearch_arr(booking* arr, int target, int filled) {
     for (int k = 0; k < filled; ++k) {
         int d = calcDate(arr[k].date_booking);
         if (d >= target) return k;
@@ -12,7 +13,7 @@ inline int linearSearch_arr(booking* arr, int target, int filled) {
     return filled;
 }
 
-inline int linearSearch_vec(const std::vector<booking>& vec, int target) {
+int linearSearch_vec(const std::vector<booking>& vec, int target) {
     for (int k = 0; k < static_cast<int>(vec.size()); ++k) {
         int d = calcDate(vec[k].date_booking);
         if (d >= target) return k;
@@ -20,7 +21,7 @@ inline int linearSearch_vec(const std::vector<booking>& vec, int target) {
     return static_cast<int>(vec.size());
 }
 
-inline int interpolationSearch_arr(booking* arr, int n, int target) {
+int interpolationSearch_arr(booking* arr, int n, int target) {
     int left = 0;
     int right = n - 1;
 
@@ -53,7 +54,7 @@ inline int interpolationSearch_arr(booking* arr, int n, int target) {
     return -1;
 }
 
-inline int interpolationSearch_vec(const std::vector<booking>& vec, int target) {
+int interpolationSearch_vec(const std::vector<booking>& vec, int target) {
     int left = 0;
     int right = static_cast<int>(vec.size()) - 1;
 
@@ -86,7 +87,7 @@ inline int interpolationSearch_vec(const std::vector<booking>& vec, int target) 
     return -1;
 }
 
-inline int barrierSearch_arr(booking* arr, int n, int target) {
+int barrierSearch_arr(booking* arr, int n, int target) {
     if (n <= 0) return -1;
 
     int* keys = new int[n];
@@ -107,8 +108,7 @@ inline int barrierSearch_arr(booking* arr, int n, int target) {
         return i;
     return -1;
 }
-
-inline int barrierSearch_vec(const std::vector<booking>& vec, int target) {
+int barrierSearch_vec(const std::vector<booking>& vec, int target) {
     int n = static_cast<int>(vec.size());
     if (n <= 0) return -1;
 
@@ -130,5 +130,3 @@ inline int barrierSearch_vec(const std::vector<booking>& vec, int target) {
         return i;
     return -1;
 }
-
-#endif

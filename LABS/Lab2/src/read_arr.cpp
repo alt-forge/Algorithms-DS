@@ -2,8 +2,11 @@
 #include <fstream>
 #include <sstream>
 #include <string>
-#include "data_types.h"
 #include <utility>
+
+#include "read_arr.h"
+
+#include "data_types.h"
 
 std::pair<booking*, int> read_in_arr(std::string& filename) {
     std::ifstream fin(filename);
