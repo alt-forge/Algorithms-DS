@@ -44,7 +44,8 @@ std::pair<booking*, int> read_in_arr_sort(std::string& filename) {
 
         int days = calcDate(b.date_booking);
 
-        int k = linearSearch_arr(arr, days, filled);
+        int dummy = 0;
+        int k = linearSearch_arr(arr, days, filled, dummy);
 
         for (int j = filled; j > k; --j)
             arr[j] = arr[j - 1];

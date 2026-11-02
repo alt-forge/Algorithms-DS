@@ -43,7 +43,8 @@ std::vector<booking> read_in_vector(std::string& filename) {
 
         int days = calcDate(b.date_booking);
 
-        int k = linearSearch_vec(vec, days);
+        int dummy = 0;
+        int k = linearSearch_vec(vec, days, dummy);
         vec.insert(vec.begin() + k, b);
 
     }

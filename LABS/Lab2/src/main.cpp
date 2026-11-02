@@ -54,21 +54,25 @@ int main() {
 
 
     // Интерполяционный поиск
+    int cmp_interp_arr = 0;
     int idx_interp_arr = -1;
     double t_interp_arr = measure_ms([&] {
-        idx_interp_arr = interpolationSearch_arr(arr, n_arr, goal_key_search);
+        idx_interp_arr = interpolationSearch_arr(arr, n_arr, goal_key_search, cmp_interp_arr);
     });
 
+    int cmp_interp_sort = 0;
     int idx_interp_sort = -1;
     double t_interp_sort = measure_ms([&] {
-        idx_interp_sort = interpolationSearch_arr(arr_sort, n_sort, goal_key_search);
+        idx_interp_sort = interpolationSearch_arr(arr_sort, n_sort, goal_key_search, cmp_interp_sort);
     });
 
+    int cmp_interp_vec = 0;
     int idx_interp_vec = -1;
     double t_interp_vec = measure_ms([&] {
-        idx_interp_vec = interpolationSearch_vec(vec, goal_key_search);
+        idx_interp_vec = interpolationSearch_vec(vec, goal_key_search, cmp_interp_vec);
     });
 
+    print_cmp(cmp_interp_arr,cmp_interp_sort,cmp_interp_vec);
     print_time("Время затраченное при INTERPOLATION SEARCH:", t_interp_arr, t_interp_sort, t_interp_vec);
 
     /*
@@ -80,21 +84,25 @@ int main() {
      */
 
     // Линейный поиск с барьером
+    int cmp_barrier_arr = 0;
     int idx_barrier_arr = -1;
     double t_barrier_arr = measure_ms([&] {
-        idx_barrier_arr = barrierSearch_arr(arr, n_arr, goal_key_search);
+        idx_barrier_arr = barrierSearch_arr(arr, n_arr, goal_key_search, cmp_barrier_arr);
     });
 
+    int cmp_barrier_sort = 0;
     int idx_barrier_sort = -1;
     double t_barrier_sort = measure_ms([&] {
-        idx_barrier_sort = barrierSearch_arr(arr_sort, n_sort, goal_key_search);
+        idx_barrier_sort = barrierSearch_arr(arr_sort, n_sort, goal_key_search, cmp_barrier_sort);
     });
 
+    int cmp_barrier_vec = 0;
     int idx_barrier_vec = -1;
     double t_barrier_vec = measure_ms([&] {
-        idx_barrier_vec = barrierSearch_vec(vec, goal_key_search);
+        idx_barrier_vec = barrierSearch_vec(vec, goal_key_search, cmp_barrier_vec);
     });
-    
+
+    print_cmp(cmp_barrier_arr,cmp_barrier_sort,cmp_barrier_vec);
     print_time("Время затраченное при BARRIER SEARCH:", t_barrier_arr, t_barrier_sort, t_barrier_vec);
     
     /*
@@ -106,9 +114,12 @@ int main() {
     */
 
     // Поиск позиции для удаления по ключу
-    int idx_for_del_arr = barrierSearch_arr(arr, n_arr, goal_key_del);
-    int idx_for_del_sort = interpolationSearch_arr(arr_sort, n_sort, goal_key_del);
-    int idx_for_del_vec = interpolationSearch_vec(vec, goal_key_del);
+    int cmp_del_arr = 0;
+    int cmp_del_sort = 0;
+    int cmp_del_vec = 0;
+    int idx_for_del_arr = barrierSearch_arr(arr, n_arr, goal_key_del, cmp_del_arr);
+    int idx_for_del_sort = interpolationSearch_arr(arr_sort, n_sort, goal_key_del, cmp_del_sort);
+    int idx_for_del_vec = interpolationSearch_vec(vec, goal_key_del, cmp_del_vec);
 
     /*    
     std::cout << '\n';
@@ -136,5 +147,6 @@ int main() {
         remove_vec(vec, idx_for_del_vec);
     });
 
+    print_cmp(cmp_del_arr,cmp_del_sort,cmp_del_vec);
     print_time("Время удаления внутри:", t_remove_arr, t_remove_sort, t_remove_vec);
 }

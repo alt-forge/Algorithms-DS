@@ -14,5 +14,6 @@ double measure_ms(F&& fn) {
 }
 
 void print_time(std::string title, double t1, double t2, double t3);
+void print_cmp(int cmp1, int cmp2, int cmp3);
 
 #endif
