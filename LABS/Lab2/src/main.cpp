@@ -4,25 +4,27 @@
 #include "read_arr_sort.h"
 #include "read_vec.h"
 
-#include "remove_arr.h"
-#include "remove_arr_sort.h"
-#include "remove_vec.h"
+#include "remove_arr_vec.h"
 
 #include "calcDate.h"
 #include "searches.h"
 #include "workWithTime.h"
 
 int main() {
-
     // Инициализация входных данных
     std::string f = "output_1000.txt";
 
-    date goal_date;
-    goal_date.day = 12;
-    goal_date.month = 6;
-    goal_date.year = 2025;
-    int goal_key = calcDate(goal_date);
+    date goal_date_search;
+    goal_date_search.day = 12;
+    goal_date_search.month = 6;
+    goal_date_search.year = 2025;
+    int goal_key_search = calcDate(goal_date_search);
 
+    date goal_date_del;
+    goal_date_del.day = 22;
+    goal_date_del.month = 1;
+    goal_date_del.year = 2021;
+    int goal_key_del = calcDate(goal_date_del);
 
     // Считывание в статический массив
     booking* arr = nullptr;
@@ -54,17 +56,17 @@ int main() {
     // Интерполяционный поиск
     int idx_interp_arr = -1;
     double t_interp_arr = measure_ms([&] {
-        idx_interp_arr = interpolationSearch_arr(arr, n_arr, goal_key);
+        idx_interp_arr = interpolationSearch_arr(arr, n_arr, goal_key_search);
     });
 
     int idx_interp_sort = -1;
     double t_interp_sort = measure_ms([&] {
-        idx_interp_sort = interpolationSearch_arr(arr_sort, n_sort, goal_key);
+        idx_interp_sort = interpolationSearch_arr(arr_sort, n_sort, goal_key_search);
     });
 
     int idx_interp_vec = -1;
     double t_interp_vec = measure_ms([&] {
-        idx_interp_vec = interpolationSearch_vec(vec, goal_key);
+        idx_interp_vec = interpolationSearch_vec(vec, goal_key_search);
     });
 
     print_time("Время затраченное при INTERPOLATION SEARCH:", t_interp_arr, t_interp_sort, t_interp_vec);
@@ -80,17 +82,17 @@ int main() {
     // Линейный поиск с барьером
     int idx_barrier_arr = -1;
     double t_barrier_arr = measure_ms([&] {
-        idx_barrier_arr = barrierSearch_arr(arr, n_arr, goal_key);
+        idx_barrier_arr = barrierSearch_arr(arr, n_arr, goal_key_search);
     });
 
     int idx_barrier_sort = -1;
     double t_barrier_sort = measure_ms([&] {
-        idx_barrier_sort = barrierSearch_arr(arr_sort, n_sort, goal_key);
+        idx_barrier_sort = barrierSearch_arr(arr_sort, n_sort, goal_key_search);
     });
 
     int idx_barrier_vec = -1;
     double t_barrier_vec = measure_ms([&] {
-        idx_barrier_vec = barrierSearch_vec(vec, goal_key);
+        idx_barrier_vec = barrierSearch_vec(vec, goal_key_search);
     });
     
     print_time("Время затраченное при BARRIER SEARCH:", t_barrier_arr, t_barrier_sort, t_barrier_vec);
@@ -102,4 +104,37 @@ int main() {
         std::cout << vec[idx_barrier_vec].date_booking << ' ' << idx_barrier_vec << '\n'; 
     } else std::cout << "элемент не найден" << '\n';
     */
+
+    // Поиск позиции для удаления по ключу
+    int idx_for_del_arr = barrierSearch_arr(arr, n_arr, goal_key_del);
+    int idx_for_del_sort = interpolationSearch_arr(arr_sort, n_sort, goal_key_del);
+    int idx_for_del_vec = interpolationSearch_vec(vec, goal_key_del);
+
+    /*    
+    std::cout << '\n';
+    std::cout << "idx_arr = " << idx_for_del_arr
+          << ", idx_sort = " << idx_for_del_sort
+          << ", idx_vec = " << idx_for_del_vec << "\n";
+    std::cout << "n_arr before = " << n_arr
+            << ", n_sort before = " << n_sort
+            << ", vec.size before = " << vec.size() << "\n";
+    std::cout << '\n'; */
+
+    // Удаление в статическом массиве
+    double t_remove_arr = measure_ms([&] {
+        n_arr = remove_arr(arr, n_arr, idx_for_del_arr);
+    });
+
+    // Удаление в статическом упорядоченном массиве
+    double t_remove_sort = measure_ms([&] {
+        n_sort = remove_arr(arr_sort, n_sort, idx_for_del_sort);
+    });
+    
+    // Удаление в упорядоченом векторе
+    bool l = false;
+    double t_remove_vec = measure_ms([&] {
+        remove_vec(vec, idx_for_del_vec);
+    });
+
+    print_time("Время удаления внутри:", t_remove_arr, t_remove_sort, t_remove_vec);
 }

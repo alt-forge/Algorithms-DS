@@ -4,7 +4,6 @@
 
 #include "calcDate.h"
 
-
 int linearSearch_arr(booking* arr, int target, int filled) {
     for (int k = 0; k < filled; ++k) {
         int d = calcDate(arr[k].date_booking);
@@ -108,6 +107,7 @@ int barrierSearch_arr(booking* arr, int n, int target) {
         return i;
     return -1;
 }
+
 int barrierSearch_vec(const std::vector<booking>& vec, int target) {
     int n = static_cast<int>(vec.size());
     if (n <= 0) return -1;
